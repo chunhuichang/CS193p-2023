@@ -13,34 +13,46 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                ForEach(0 ..< cardCount, id: \.self) { index in
-                    CardView(content: emojis[index], isFaceUp: true)
-                }
-            }
-            .foregroundStyle(.orange)
-
-            HStack {
-                Button(action: {
-                    if cardCount > 1 {
-                        cardCount -= 1
-                    }
-                }, label: {
-                    Image(systemName: "minus.circle.fill")
-                })
-                Spacer()
-                Button(action: {
-                    if cardCount < emojis.count {
-                        cardCount += 1
-                    }
-                }, label: {
-                    Image(systemName: "plus.circle.fill")
-                })
-            }
-            .imageScale(.large)
-            .font(.largeTitle)
+            cards
+            cardCountAdjusters
         }
         .padding()
+    }
+
+    var cards: some View {
+        HStack {
+            ForEach(0 ..< cardCount, id: \.self) { index in
+                CardView(content: emojis[index], isFaceUp: true)
+            }
+        }
+        .foregroundStyle(.orange)
+    }
+
+    var cardCountAdjusters: some View {
+        HStack {
+            cardReomver
+            Spacer()
+            cardAdder
+        }
+        .imageScale(.large)
+        .font(.largeTitle)
+    }
+
+    var cardReomver: some View {
+        cardCountAdjusters(by: -1, symbol: "minus.circle.fill")
+    }
+
+    var cardAdder: some View {
+        cardCountAdjusters(by: 1, symbol: "plus.circle.fill")
+    }
+
+    func cardCountAdjusters(by offset: Int, symbol: String) -> some View {
+        Button(action: {
+            cardCount += offset
+        }, label: {
+            Image(systemName: symbol)
+        })
+        .disabled(cardCount + offset < 1 || cardCount + offset > emojis.count)
     }
 }
 
