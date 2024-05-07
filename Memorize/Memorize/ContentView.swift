@@ -13,16 +13,20 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            cards
+            ScrollView {
+                cards
+            }
+            Spacer()
             cardCountAdjusters
         }
         .padding()
     }
 
     var cards: some View {
-        HStack {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
             ForEach(0 ..< cardCount, id: \.self) { index in
                 CardView(content: emojis[index], isFaceUp: true)
+                    .aspectRatio(2 / 3, contentMode: .fit)
             }
         }
         .foregroundStyle(.orange)
@@ -63,14 +67,14 @@ struct CardView: View {
     var body: some View {
         ZStack {
             let base = RoundedRectangle(cornerRadius: 12.0)
-            if isFaceUp {
+            Group {
                 base.fill(.white)
                 base.strokeBorder(lineWidth: 2.0)
                 Text(content)
                     .font(.largeTitle)
-            } else {
-                base.fill()
             }
+            .opacity(isFaceUp ? 1 : 0)
+            base.fill().opacity(isFaceUp ? 0 : 1)
         }
         .onTapGesture {
             isFaceUp.toggle()
