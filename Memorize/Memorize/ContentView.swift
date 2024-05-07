@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    let emojis = ["😈", "👹", "👻", "💀"]
+
     var body: some View {
         HStack {
-            CardView(isFaceUp: true)
-            CardView()
-            CardView(isFaceUp: true)
-            CardView()
+            ForEach(emojis.indices, id: \.self) { index in
+                CardView(content: emojis[index], isFaceUp: true)
+            }
         }
         .foregroundStyle(.orange)
         .padding()
@@ -21,6 +22,7 @@ struct ContentView: View {
 }
 
 struct CardView: View {
+    let content: String
     @State var isFaceUp = false
 
     var body: some View {
@@ -29,7 +31,7 @@ struct CardView: View {
             if isFaceUp {
                 base.fill(.white)
                 base.strokeBorder(lineWidth: 2.0)
-                Text("🤪")
+                Text(content)
                     .font(.largeTitle)
             } else {
                 base.fill()
