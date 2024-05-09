@@ -4,3 +4,5 @@
 ### [Lecture 1](./Docs/Lecture_1)
 
 ### [Lecture 2](./Docs/Lecture_2)
+
+### [Programming Assignment 1](./Docs/Programming_Assignment_1)
