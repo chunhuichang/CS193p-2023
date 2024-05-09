@@ -11,6 +11,7 @@
 		E10D1FFF2BE90F6800A207AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10D1FFE2BE90F6800A207AE /* ContentView.swift */; };
 		E10D20012BE90F6900A207AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10D20002BE90F6900A207AE /* Assets.xcassets */; };
 		E10D20042BE90F6900A207AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10D20032BE90F6900A207AE /* Preview Assets.xcassets */; };
+		E10D200F2BEB5F4B00A207AE /* Assignment1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10D200E2BEB5F4B00A207AE /* Assignment1View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		E10D1FFE2BE90F6800A207AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E10D20002BE90F6900A207AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E10D20032BE90F6900A207AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E10D200E2BEB5F4B00A207AE /* Assignment1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment1View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		E10D1FFB2BE90F6800A207AE /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				E1FB28D62BEC8BDB00CFDA35 /* Programming Assignment 1 */,
 				E10D1FFC2BE90F6800A207AE /* MemorizeApp.swift */,
 				E10D1FFE2BE90F6800A207AE /* ContentView.swift */,
 				E10D20002BE90F6900A207AE /* Assets.xcassets */,
@@ -65,6 +68,14 @@
 				E10D20032BE90F6900A207AE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E1FB28D62BEC8BDB00CFDA35 /* Programming Assignment 1 */ = {
+			isa = PBXGroup;
+			children = (
+				E10D200E2BEB5F4B00A207AE /* Assignment1View.swift */,
+			);
+			path = "Programming Assignment 1";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10D200F2BEB5F4B00A207AE /* Assignment1View.swift in Sources */,
 				E10D1FFF2BE90F6800A207AE /* ContentView.swift in Sources */,
 				E10D1FFD2BE90F6800A207AE /* MemorizeApp.swift in Sources */,
 			);
