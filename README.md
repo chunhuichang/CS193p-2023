@@ -6,3 +6,5 @@
 ### [Lecture 2](./Docs/Lecture_2)
 
 ### [Programming Assignment 1](./Docs/Programming_Assignment_1)
+
+### [Lecture 3](./Docs/Lecture_3)
