@@ -21,6 +21,10 @@ struct MemoryGame<CardContent> {
         }
     }
 
+    mutating func shuffle() {
+        cards.shuffle()
+    }
+
     func choose(card: Card) {}
 }
 

@@ -13,8 +13,16 @@ struct EmojiMemoryGameView: View {
     let emojis = ["😈", "👹", "👻", "💀", "👺", "🎃", "🧛🏻‍♂️", "🧟‍♂️", "🕷️", "🦹"]
 
     var body: some View {
+        VStack {
         ScrollView {
             cards
+        }
+            Button(action: {
+                viewModel.shuffle()
+            }, label: {
+                Text("Shuffle")
+
+            })
         }
         .padding()
     }

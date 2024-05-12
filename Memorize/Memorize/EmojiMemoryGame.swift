@@ -22,5 +22,9 @@ class EmojiMemoryGame {
         model.cards
     }
 
+    func shuffle() {
+        model.shuffle()
+    }
+
     func choose(_ card: MemoryGame<String>.Card) {}
 }
