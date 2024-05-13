@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MemoryGame<CardContent> {
+struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: [Card]
 
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
@@ -29,7 +29,7 @@ struct MemoryGame<CardContent> {
 }
 
 extension MemoryGame {
-    struct Card {
+    struct Card: Equatable {
         var isFaceUp: Bool = false
         var isMathced: Bool = false
         let content: CardContent
