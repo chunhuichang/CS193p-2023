@@ -25,14 +25,35 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         cards.shuffle()
     }
 
-    func choose(card: Card) {
-        print("choose \(card)")
+    var indexOfTheOneAndOnlyFaceUpCard: Int? {
+        get {
+            cards.indices.filter { cards[$0].isFaceUp }.only
+        }
+        set {
+            cards.indices.forEach { cards[$0].isFaceUp = newValue == $0 }
+        }
+    }
+
+    mutating func choose(card: Card) {
+        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
+            if !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMathced {
+                if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+                    if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+                        cards[chosenIndex].isMathced = true
+                        cards[potentialMatchIndex].isMathced = true
+                    }
+                } else {
+                    indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+                }
+                cards[chosenIndex].isFaceUp = true
+            }
+        }
     }
 }
 
 extension MemoryGame {
     struct Card: Equatable, Identifiable, CustomStringConvertible {
-        var isFaceUp: Bool = true
+        var isFaceUp: Bool = false
         var isMathced: Bool = false
         let content: CardContent
 
@@ -40,5 +61,11 @@ extension MemoryGame {
         var description: String {
             "\(id) \(content) \(isFaceUp ? "Up" : "Down") \(isMathced ? "Matched" : "")"
         }
+    }
+}
+
+extension Array {
+    var only: Element? {
+        count == 1 ? first : nil
     }
 }
