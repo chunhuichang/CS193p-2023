@@ -8,3 +8,7 @@
 ### [Programming Assignment 1](./Docs/Programming_Assignment_1)
 
 ### [Lecture 3](./Docs/Lecture_3)
+
+### [Lecture 4](./Docs/Lecture_4)
+
+### [Lecture 5](./Docs/Lecture_5)
