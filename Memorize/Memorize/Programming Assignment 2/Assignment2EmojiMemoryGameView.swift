@@ -11,22 +11,45 @@ struct Assignment2EmojiMemoryGameView: View {
     @ObservedObject
     var viewModel: Assignment2EmojiMemoryGame
 
-    let emojis = ["😈", "👹", "👻", "💀", "👺", "🎃", "🧛🏻‍♂️", "🧟‍♂️", "🕷️", "🦹"]
-
     var body: some View {
         VStack {
-            ScrollView {
-                cards
-                    .animation(.default, value: viewModel.cards)
-            }
-            Button(action: {
-                viewModel.shuffle()
-            }, label: {
-                Text("Shuffle")
-
-            })
+            title
+            cardsWithScroll
+            newGameButton
         }
         .padding()
+    }
+}
+
+// MARK: - View
+
+private extension Assignment2EmojiMemoryGameView {
+    var title: some View {
+        VStack {
+            Text("Thmem Color")
+                .font(.largeTitle)
+                .foregroundStyle(.orange)
+            Text("Score:\(1)")
+                .font(.headline)
+        }
+    }
+
+    var cardsWithScroll: some View {
+        ScrollView {
+            cards
+                .animation(.default, value: viewModel.cards)
+        }
+    }
+
+    var newGameButton: some View {
+        Button(action: {
+//            viewModel.startGame()
+        }, label: {
+            Image(systemName: "gamecontroller.fill")
+            Text("New Game")
+        })
+        .buttonStyle(.borderedProminent)
+        .tint(.orange)
     }
 
     var cards: some View {
