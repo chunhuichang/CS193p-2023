@@ -26,9 +26,11 @@ struct Assignment2EmojiMemoryGameView: View {
 private extension Assignment2EmojiMemoryGameView {
     var title: some View {
         VStack {
-            Text("Thmem Color")
+            // TODO: vm.themeName
+            Text("Weather")
                 .font(.largeTitle)
                 .foregroundStyle(.orange)
+            // TODO: vm.score
             Text("Score:\(1)")
                 .font(.headline)
         }
@@ -36,14 +38,13 @@ private extension Assignment2EmojiMemoryGameView {
 
     var cardsWithScroll: some View {
         ScrollView {
-            cards
-                .animation(.default, value: viewModel.cards)
+            cards.animation(.default, value: viewModel.cards)
         }
     }
 
     var newGameButton: some View {
         Button(action: {
-//            viewModel.startGame()
+            // TODO: viewModel.startGame()
         }, label: {
             Image(systemName: "gamecontroller.fill")
             Text("New Game")
