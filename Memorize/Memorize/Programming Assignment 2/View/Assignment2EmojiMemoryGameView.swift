@@ -18,6 +18,19 @@ struct Assignment2EmojiMemoryGameView: View {
             newGameButton
         }
         .padding()
+        .foregroundStyle(viewModel.color)
+        .onAppear {
+            viewModel.startGame()
+        }
+        .alert(isPresented: $viewModel.isFinishedGame) {
+            Alert(
+                title: Text("Game Over"),
+                message: Text("Your score is \(viewModel.scores)"),
+                dismissButton: .default(Text("OK")) {
+                    viewModel.startGame()
+                }
+            )
+        }
     }
 }
 
@@ -26,13 +39,18 @@ struct Assignment2EmojiMemoryGameView: View {
 private extension Assignment2EmojiMemoryGameView {
     var title: some View {
         VStack {
-            // TODO: vm.themeName
-            Text("Weather")
-                .font(.largeTitle)
-                .foregroundStyle(.orange)
-            // TODO: vm.score
-            Text("Score:\(1)")
-                .font(.headline)
+            HStack {
+                Image(systemName: viewModel.theme.icon)
+                    .imageScale(.small)
+                Text(viewModel.theme.title)
+                    .font(.largeTitle)
+                Image(systemName: viewModel.theme.icon)
+                    .imageScale(.small)
+            }
+            Text("Score:\(viewModel.scores)")
+                .font(.title)
+                .foregroundStyle(.black)
+                .opacity(viewModel.isFinishedGame ? 0 : 1)
         }
     }
 
@@ -44,13 +62,12 @@ private extension Assignment2EmojiMemoryGameView {
 
     var newGameButton: some View {
         Button(action: {
-            // TODO: viewModel.startGame()
+            viewModel.startGame()
         }, label: {
             Image(systemName: "gamecontroller.fill")
             Text("New Game")
         })
-        .buttonStyle(.borderedProminent)
-        .tint(.orange)
+        .buttonStyle(.bordered)
     }
 
     var cards: some View {
@@ -64,7 +81,6 @@ private extension Assignment2EmojiMemoryGameView {
                     }
             }
         }
-        .foregroundStyle(.orange)
     }
 
     struct CardView: View {
@@ -88,7 +104,7 @@ private extension Assignment2EmojiMemoryGameView {
                 .opacity(card.isFaceUp ? 1 : 0)
                 base.fill().opacity(card.isFaceUp ? 0 : 1)
             }
-            .opacity(card.isFaceUp || !card.isMathced ? 1 : 0)
+            .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
         }
     }
 }
