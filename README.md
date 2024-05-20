@@ -12,3 +12,5 @@
 ### [Lecture 4](./Docs/Lecture_4)
 
 ### [Lecture 5](./Docs/Lecture_5)
+
+### [Programming Assignment 2](./Docs/Programming_Assignment_2)
