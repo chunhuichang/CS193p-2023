@@ -1,5 +1,7 @@
 ## Lecture 5 - Protocols, enum, Optional
 
+The primary topic is protocols (Identifiable, Equatable, etc.).  In addition, another significant element of the Swift type system, enum, is introduced along with the most important enum in Swift: Optional.  The logic of Memorize is finished off using these along with computed properties.
+
 [Video](https://www.youtube.com/watch?v=F1x-H8kEwo8)
 
 ### Protocol
@@ -84,6 +86,6 @@ enum Optional<T> {
     - force(with `!`)
         - avoid to use, it’s often called the crash operator
 
----        
+## Demo      
 ![Lecture 5 Demo](Lecture_5.gif)
 

@@ -1,5 +1,7 @@
 ## Lecture 3 - MVVM
 
+Conceptual overview of the architectural paradigm underlying the development of applications for iOS using SwiftUI (known as MVVM).  Explanation of a fundamental component of understanding the Swift programming language: its type system.  Start to apply both of these to Memorize.
+
 [Video](https://www.youtube.com/watch?v=W1ymVx6dmvc)
 
 ### MVVM - Design paradigm
