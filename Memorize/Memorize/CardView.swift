@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CardView: View {
-    let card: MemoryGame<String>.Card
+    typealias Card = MemoryGame<String>.Card
+    let card: Card
 
-    init(_ card: MemoryGame<String>.Card) {
+    init(_ card: Card) {
         self.card = card
     }
 
@@ -35,14 +36,15 @@ struct CardView: View {
 }
 
 #Preview {
-    VStack {
+    typealias Card = CardView.Card
+    return VStack {
         HStack {
-            CardView(MemoryGame<String>.Card(content: "X", id: "a"))
-            CardView(MemoryGame<String>.Card(isFaceUp: true, content: "This is VERY VERY VERY VERY VERY LONG content.", id: "a"))
+            CardView(Card(content: "X", id: "a"))
+            CardView(Card(isFaceUp: true, content: "This is VERY VERY VERY VERY VERY LONG content.", id: "a"))
         }
         HStack {
-            CardView(MemoryGame<String>.Card(isMathced: true, content: "X", id: "a"))
-            CardView(MemoryGame<String>.Card(isFaceUp: true, isMathced: true, content: "X", id: "a"))
+            CardView(Card(isMathced: true, content: "X", id: "a"))
+            CardView(Card(isFaceUp: true, isMathced: true, content: "X", id: "a"))
         }
     }
     .padding()
