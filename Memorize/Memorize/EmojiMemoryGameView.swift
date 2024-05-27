@@ -15,6 +15,7 @@ struct EmojiMemoryGameView: View {
     var body: some View {
         VStack {
             cards
+                .foregroundStyle(viewModel.color)
                 .animation(.default, value: viewModel.cards)
             Button(action: {
                 viewModel.shuffle()
@@ -34,7 +35,6 @@ struct EmojiMemoryGameView: View {
                     viewModel.choose(card)
                 }
         }
-        .foregroundStyle(.orange)
     }
 }
 

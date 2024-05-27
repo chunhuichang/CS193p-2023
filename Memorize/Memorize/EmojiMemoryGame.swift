@@ -23,6 +23,10 @@ class EmojiMemoryGame: ObservableObject {
     var cards: [Card] {
         model.cards
     }
+    
+    var color: Color {
+        .orange
+    }
 
     func shuffle() {
         model.shuffle()
