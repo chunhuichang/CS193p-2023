@@ -1,5 +1,7 @@
 ## Lecture 4 - Applying MVVM
 
+Apply the MVVM architecture to the Memorize application. Along the way, gain familiarity with Generics and an understanding of type (static) variables and functions.
+
 [Video](https://www.youtube.com/watch?v=4CkEVfdqjLw)
 
 - use ViewModel in View
@@ -19,6 +21,7 @@
         @StateObject
         var game = EmojiMemoryGame()
         ```
----        
+
+## Demo      
 ![Lecture 4 Demo](Lecture_4.gif)
 
