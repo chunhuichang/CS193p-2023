@@ -23,6 +23,7 @@
 		E15F20892C0488AE00148931 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15F20882C0488AE00148931 /* CardView.swift */; };
 		E1C7377A2C09C7B6000EF4CD /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C737792C09C7B6000EF4CD /* Pie.swift */; };
 		E1C7377C2C0C4894000EF4CD /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7377B2C0C4894000EF4CD /* Cardify.swift */; };
+		E1C7377E2C10A4ED000EF4CD /* FlyingNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7377D2C10A4ED000EF4CD /* FlyingNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		E15F20882C0488AE00148931 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E1C737792C09C7B6000EF4CD /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		E1C7377B2C0C4894000EF4CD /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
+		E1C7377D2C10A4ED000EF4CD /* FlyingNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				E1C7377B2C0C4894000EF4CD /* Cardify.swift */,
 				E10D200C2BEA06A200A207AE /* EmojiMemoryGame.swift */,
 				E10D1FFE2BE90F6800A207AE /* EmojiMemoryGameView.swift */,
+				E1C7377D2C10A4ED000EF4CD /* FlyingNumber.swift */,
 				E15F20882C0488AE00148931 /* CardView.swift */,
 				E10D1FFC2BE90F6800A207AE /* MemorizeApp.swift */,
 				E10D20002BE90F6900A207AE /* Assets.xcassets */,
@@ -227,6 +230,7 @@
 				E1C7377A2C09C7B6000EF4CD /* Pie.swift in Sources */,
 				E15F20892C0488AE00148931 /* CardView.swift in Sources */,
 				E10D200D2BEA06A300A207AE /* EmojiMemoryGame.swift in Sources */,
+				E1C7377E2C10A4ED000EF4CD /* FlyingNumber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

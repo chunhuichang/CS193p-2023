@@ -41,10 +41,19 @@ struct CardView: View {
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(Constants.Pie.inset)
+                    // when match rotates 360 degrees
+                    .rotationEffect(.degrees(card.isMathced ? 360 : 0))
+                    .animation(.spin(duration: 1), value: card.isMathced)
             }
             .padding(Constants.inset)
             .cardify(isFaceUp: card.isFaceUp)
             .opacity(card.isFaceUp || !card.isMathced ? 1 : 0)
+    }
+}
+
+extension Animation {
+    static func spin(duration: TimeInterval) -> Animation {
+        .linear(duration: duration).repeatForever(autoreverses: false)
     }
 }
 
