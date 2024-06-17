@@ -37,11 +37,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 
     mutating func choose(card: Card) {
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
-            if !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMathced {
+            if !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched {
                 if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
                     if cards[chosenIndex].content == cards[potentialMatchIndex].content {
-                        cards[chosenIndex].isMathced = true
-                        cards[potentialMatchIndex].isMathced = true
+                        cards[chosenIndex].isMatched = true
+                        cards[potentialMatchIndex].isMatched = true
                         score += 2
                     } else {
                         if cards[chosenIndex].hasBeenSeen {
@@ -71,12 +71,12 @@ extension MemoryGame {
         }
 
         var hasBeenSeen: Bool = false
-        var isMathced: Bool = false
+        var isMatched: Bool = false
         let content: CardContent
 
         var id: String
         var description: String {
-            "\(id) \(content) \(isFaceUp ? "Up" : "Down") \(isMathced ? "Matched" : "")"
+            "\(id) \(content) \(isFaceUp ? "Up" : "Down") \(isMatched ? "Matched" : "")"
         }
     }
 }

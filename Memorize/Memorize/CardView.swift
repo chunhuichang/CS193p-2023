@@ -42,12 +42,12 @@ struct CardView: View {
                     .aspectRatio(1, contentMode: .fit)
                     .padding(Constants.Pie.inset)
                     // when match rotates 360 degrees
-                    .rotationEffect(.degrees(card.isMathced ? 360 : 0))
-                    .animation(.spin(duration: 1), value: card.isMathced)
+                    .rotationEffect(.degrees(card.isMatched ? 360 : 0))
+                    .animation(.spin(duration: 1), value: card.isMatched)
             }
             .padding(Constants.inset)
             .cardify(isFaceUp: card.isFaceUp)
-            .opacity(card.isFaceUp || !card.isMathced ? 1 : 0)
+            .opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
     }
 }
 
@@ -65,8 +65,8 @@ extension Animation {
             CardView(Card(isFaceUp: true, content: "This is VERY VERY VERY VERY VERY LONG content.", id: "a"))
         }
         HStack {
-            CardView(Card(isMathced: true, content: "X", id: "a"))
-            CardView(Card(isFaceUp: true, isMathced: true, content: "X", id: "a"))
+            CardView(Card(isMatched: true, content: "X", id: "a"))
+            CardView(Card(isFaceUp: true, isMatched: true, content: "X", id: "a"))
         }
     }
     .padding()
