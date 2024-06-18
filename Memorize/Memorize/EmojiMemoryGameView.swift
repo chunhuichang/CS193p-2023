@@ -11,6 +11,11 @@ struct EmojiMemoryGameView: View {
     typealias Card = MemoryGame<String>.Card
     @ObservedObject
     var viewModel: EmojiMemoryGame
+    @State
+    private var lastScoreChange = (0, causeByCardId: "")
+    // Dealing from a Deck
+    @State private var dealt = Set<Card.ID>()
+    @Namespace private var dealingNamespace
 
     var body: some View {
         VStack {
@@ -26,23 +31,11 @@ struct EmojiMemoryGameView: View {
         }
         .padding()
     }
+}
 
-    private var score: some View {
-        Text("Score: \(viewModel.score)")
-            .animation(nil)
-    }
+// MARK: - Card
 
-    private var shuffle: some View {
-        Button(action: {
-            withAnimation {
-                viewModel.shuffle()
-            }
-        }, label: {
-            Text("Shuffle")
-
-        })
-    }
-
+private extension EmojiMemoryGameView {
     private var cards: some View {
         AspectVGrid(viewModel.cards, Constants.aspectRatio) { card in
             if isDealt(card) {
@@ -67,18 +60,35 @@ struct EmojiMemoryGameView: View {
         }
     }
 
-    @State
-    private var lastScoreChange = (0, causeByCardId: "")
-
     private func scoreChange(causedBy card: Card) -> Int {
         let (amount, id) = lastScoreChange
         return card.id == id ? amount : 0
     }
+}
 
-    // MARK: - Dealing from a Deck
+// MARK: - Bottom part
 
-    @State private var dealt = Set<Card.ID>()
+private extension EmojiMemoryGameView {
+    private var score: some View {
+        Text("Score: \(viewModel.score)")
+            .animation(nil)
+    }
 
+    private var shuffle: some View {
+        Button(action: {
+            withAnimation {
+                viewModel.shuffle()
+            }
+        }, label: {
+            Text("Shuffle")
+
+        })
+    }
+}
+
+// MARK: - Dealing from a Deck
+
+private extension EmojiMemoryGameView {
     private func isDealt(_ card: Card) -> Bool {
         dealt.contains(card.id)
     }
@@ -86,8 +96,6 @@ struct EmojiMemoryGameView: View {
     private var undealtCards: [Card] {
         viewModel.cards.filter { !isDealt($0) }
     }
-
-    @Namespace private var dealingNamespace
 
     private var deck: some View {
         ZStack {
