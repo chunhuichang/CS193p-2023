@@ -47,7 +47,7 @@ struct EmojiMemoryGameView: View {
     private var cards: some View {
         AspectVGrid(viewModel.cards, aspectRatio) { card in
             if isDealt(card) {
-                CardView(card)
+                cardAinimationView(card)
                     .padding(4)
                     .overlay(FlyingNumber(number: scoreChange(causedBy: card)))
                     // FIXME: xcode 15.3 can't display flying text front of the card
@@ -55,8 +55,6 @@ struct EmojiMemoryGameView: View {
                     .onTapGesture {
                         choose(card)
                     }
-                    .matchedGeometryEffect(id: card.id, in: dealingNamespace)
-                    .transition(AsymmetricTransition(insertion: .identity, removal: .identity))
             }
         }
     }
@@ -96,15 +94,19 @@ struct EmojiMemoryGameView: View {
     private var deck: some View {
         ZStack {
             ForEach(undealtCards) { card in
-                CardView(card)
-                    .matchedGeometryEffect(id: card.id, in: dealingNamespace)
-                    .transition(AsymmetricTransition(insertion: .identity, removal: .identity))
+                cardAinimationView(card)
             }
         }
         .frame(width: deckWidth, height: deckWidth / aspectRatio)
         .onTapGesture {
             deal()
         }
+    }
+
+    private func cardAinimationView(_ card: Card) -> some View {
+        CardView(card)
+            .matchedGeometryEffect(id: card.id, in: dealingNamespace)
+            .transition(AsymmetricTransition(insertion: .identity, removal: .identity))
     }
 
     private let dealInterval: TimeInterval = 0.15
