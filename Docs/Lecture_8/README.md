@@ -104,10 +104,6 @@ First of a two-part animation adventure. Implicit animation vs. explicit animati
 - Implicit Animation (celebrating a match!)
 - Animatable ViewModifier (flipping the cards over)
 - Suppressing unwanted animation (- animation (nil))
-- onAppear animation (flying score change indications (incl. Property Observer and Tuples))
-- TimelineView (animating our pie-shaped countdown timer)
-- transitions (animating the arrival and departure of Views)
-- matchedGeometryEffect (dealing our cards out)
 
 
 ## Demo

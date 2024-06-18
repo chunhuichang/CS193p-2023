@@ -32,22 +32,29 @@ struct CardView: View {
     }
 
     var body: some View {
-        Pie(endAngle: .degrees(240))
-            .opacity(Constants.Pie.opacity)
-            .overlay {
-                Text(card.content)
-                    .font(.system(size: Constants.FontSize.largest))
-                    .minimumScaleFactor(Constants.FontSize.scaleFactor)
-                    .multilineTextAlignment(.center)
-                    .aspectRatio(1, contentMode: .fit)
-                    .padding(Constants.Pie.inset)
-                    // when match rotates 360 degrees
-                    .rotationEffect(.degrees(card.isMathced ? 360 : 0))
-                    .animation(.spin(duration: 1), value: card.isMathced)
+        TimelineView(.animation) { _ in
+            if card.isFaceUp || !card.isMatched {
+                Pie(endAngle: .degrees(card.bonusPercentRemaining * 360))
+                    .opacity(Constants.Pie.opacity)
+                    .overlay(cardContents.padding(Constants.Pie.inset))
+                    .padding(Constants.inset)
+                    .cardify(isFaceUp: card.isFaceUp)
+                    .transition(.scale)
+            } else {
+                Color.clear
             }
-            .padding(Constants.inset)
-            .cardify(isFaceUp: card.isFaceUp)
-            .opacity(card.isFaceUp || !card.isMathced ? 1 : 0)
+        }
+    }
+
+    private var cardContents: some View {
+        Text(card.content)
+            .font(.system(size: Constants.FontSize.largest))
+            .minimumScaleFactor(Constants.FontSize.scaleFactor)
+            .multilineTextAlignment(.center)
+            .aspectRatio(1, contentMode: .fit)
+            // when match rotates 360 degrees
+            .rotationEffect(.degrees(card.isMatched ? 360 : 0))
+            .animation(.spin(duration: 1), value: card.isMatched)
     }
 }
 
@@ -65,8 +72,8 @@ extension Animation {
             CardView(Card(isFaceUp: true, content: "This is VERY VERY VERY VERY VERY LONG content.", id: "a"))
         }
         HStack {
-            CardView(Card(isMathced: true, content: "X", id: "a"))
-            CardView(Card(isFaceUp: true, isMathced: true, content: "X", id: "a"))
+            CardView(Card(isMatched: true, content: "X", id: "a"))
+            CardView(Card(isFaceUp: true, isMatched: true, content: "X", id: "a"))
         }
     }
     .padding()
