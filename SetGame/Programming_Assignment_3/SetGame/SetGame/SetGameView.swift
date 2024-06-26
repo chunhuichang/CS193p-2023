@@ -10,14 +10,14 @@ import SwiftUI
 struct SetGameView: View {
     @ObservedObject
     var viewModel: SetGameViewModel
-    
-    @State var isGameOver = true
-    
+
+    @State private var isGameOver = true
+
     var body: some View {
         VStack {
             Text("Score: \(viewModel.score)")
                 .font(.headline)
-            // TODO: Display Cards
+            cards
             HStack {
                 Button("New Game") {
                     viewModel.newGame()
@@ -30,7 +30,7 @@ struct SetGameView: View {
                 .buttonStyle(BorderedProminentButtonStyle())
                 .disabled(viewModel.deckIsEmpty)
             }
-            .padding()
+            .padding(.vertical)
         }
         .padding()
         .alert(isPresented: $viewModel.isGameOver) {
@@ -42,6 +42,25 @@ struct SetGameView: View {
                 })
             )
         }
+    }
+}
+
+// MARK: - Cards
+
+private extension SetGameView {
+    private var cards: some View {
+        AspectVGrid(viewModel.cards, Constants.aspectRatio) { card in
+            CardView(card: card)
+                .padding(Constants.spacing)
+                .onTapGesture {
+                    viewModel.selectCard(card)
+                }
+        }
+    }
+
+    private struct Constants {
+        static let aspectRatio: CGFloat = 2 / 3
+        static let spacing: CGFloat = 4
     }
 }
 

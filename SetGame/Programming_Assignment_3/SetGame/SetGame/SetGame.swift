@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICore
 
 struct SetGame {
     private(set) var cards: [Card] = []
@@ -30,7 +31,20 @@ extension SetGame {
         var isSelected = false
 
         enum CardColor: CaseIterable {
-            case red, green, blue
+            case red
+            case green
+            case blue
+
+            var color: Color {
+                switch self {
+                case .red:
+                    .red
+                case .green:
+                    .green
+                case .blue:
+                    .blue
+                }
+            }
         }
 
         enum CardShape: CaseIterable {
