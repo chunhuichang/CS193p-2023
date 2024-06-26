@@ -12,6 +12,7 @@
 		E129C17A2C295817008BBBDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E129C1792C295817008BBBDD /* Assets.xcassets */; };
 		E129C17D2C295817008BBBDD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E129C17C2C295817008BBBDD /* Preview Assets.xcassets */; };
 		E129C1872C295817008BBBDD /* SetGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129C1862C295817008BBBDD /* SetGameTests.swift */; };
+		E14C9F512C295D740063F570 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F502C295D740063F570 /* SetGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		E129C17C2C295817008BBBDD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E129C1822C295817008BBBDD /* SetGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SetGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E129C1862C295817008BBBDD /* SetGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTests.swift; sourceTree = "<group>"; };
+		E14C9F502C295D740063F570 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				E129C1752C295816008BBBDD /* SetGameApp.swift */,
+				E14C9F502C295D740063F570 /* SetGame.swift */,
 				E129C1772C295816008BBBDD /* ContentView.swift */,
 				E129C1792C295817008BBBDD /* Assets.xcassets */,
 				E129C17B2C295817008BBBDD /* Preview Content */,
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E129C1782C295816008BBBDD /* ContentView.swift in Sources */,
+				E14C9F512C295D740063F570 /* SetGame.swift in Sources */,
 				E129C1762C295816008BBBDD /* SetGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

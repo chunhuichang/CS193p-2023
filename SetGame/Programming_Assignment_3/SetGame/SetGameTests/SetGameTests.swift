@@ -5,12 +5,13 @@
 //  Created by Jill Chang on 2024/6/24.
 //
 
-import Testing
 @testable import SetGame
+import Testing
 
 struct SetGameTests {
-
-    @Test func testExample() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test func setGameInit() {
+        let sut = SetGame()
+        #expect(sut.deck.count == 69)
+        #expect(sut.cards.count == 12)
     }
 }
