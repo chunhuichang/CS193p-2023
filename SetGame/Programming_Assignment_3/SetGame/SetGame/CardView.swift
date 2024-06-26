@@ -40,8 +40,7 @@ struct CardView: View {
     private var symbol: some View {
         switch card.shape {
         case .diamond:
-            // TODO: Impelment Diamond shape
-            applyShading(to: Rectangle())
+            applyShading(to: Diamond())
         case .squiggle:
             applyShading(to: Rectangle())
         case .oval:
