@@ -1,6 +1,6 @@
 //
 //  Cardify.swift
-//  SetGame
+//
 //
 //  Created by Jill Chang on 2024/6/26.
 //

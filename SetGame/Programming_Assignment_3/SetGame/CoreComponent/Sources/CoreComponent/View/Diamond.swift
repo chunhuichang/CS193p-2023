@@ -1,14 +1,16 @@
 //
 //  Diamond.swift
-//  SetGame
+//
 //
 //  Created by Jill Chang on 2024/6/26.
 //
 
 import SwiftUI
 
-struct Diamond: Shape {
-    func path(in rect: CGRect) -> Path {
+public struct Diamond: Shape {
+    public init() {}
+    
+    public func path(in rect: CGRect) -> Path {
         var path = Path()
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let width = rect.width * 0.5

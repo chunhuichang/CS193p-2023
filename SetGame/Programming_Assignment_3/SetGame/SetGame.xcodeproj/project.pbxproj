@@ -14,11 +14,9 @@
 		E129C1872C295817008BBBDD /* SetGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129C1862C295817008BBBDD /* SetGameTests.swift */; };
 		E14C9F512C295D740063F570 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F502C295D740063F570 /* SetGame.swift */; };
 		E14C9F532C2BC4590063F570 /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F522C2BC4590063F570 /* SetGameViewModel.swift */; };
-		E14C9F552C2BFA2B0063F570 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F542C2BFA2B0063F570 /* AspectVGrid.swift */; };
 		E14C9F572C2BFABB0063F570 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F562C2BFABB0063F570 /* CardView.swift */; };
-		E14C9F592C2BFADE0063F570 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F582C2BFADE0063F570 /* Cardify.swift */; };
-		E14C9F5B2C2BFBAD0063F570 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F5A2C2BFBAD0063F570 /* View+Extensions.swift */; };
-		E14C9F5D2C2BFD5D0063F570 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14C9F5C2C2BFD5D0063F570 /* Diamond.swift */; };
+		E14C9F5F2C2C07030063F570 /* CoreComponent in Resources */ = {isa = PBXBuildFile; fileRef = E14C9F5E2C2C07030063F570 /* CoreComponent */; };
+		E14C9F622C2C07620063F570 /* CoreComponent in Frameworks */ = {isa = PBXBuildFile; productRef = E14C9F612C2C07620063F570 /* CoreComponent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +39,8 @@
 		E129C1862C295817008BBBDD /* SetGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTests.swift; sourceTree = "<group>"; };
 		E14C9F502C295D740063F570 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		E14C9F522C2BC4590063F570 /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
-		E14C9F542C2BFA2B0063F570 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		E14C9F562C2BFABB0063F570 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		E14C9F582C2BFADE0063F570 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
-		E14C9F5A2C2BFBAD0063F570 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
-		E14C9F5C2C2BFD5D0063F570 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		E14C9F5E2C2C07030063F570 /* CoreComponent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CoreComponent; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E14C9F622C2C07620063F570 /* CoreComponent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +68,7 @@
 				E129C1742C295816008BBBDD /* SetGame */,
 				E129C1852C295817008BBBDD /* SetGameTests */,
 				E129C1732C295816008BBBDD /* Products */,
+				E14C9F602C2C07620063F570 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,15 +84,12 @@
 		E129C1742C295816008BBBDD /* SetGame */ = {
 			isa = PBXGroup;
 			children = (
+				E14C9F5E2C2C07030063F570 /* CoreComponent */,
 				E129C1752C295816008BBBDD /* SetGameApp.swift */,
 				E14C9F502C295D740063F570 /* SetGame.swift */,
 				E14C9F522C2BC4590063F570 /* SetGameViewModel.swift */,
 				E129C1772C295816008BBBDD /* SetGameView.swift */,
 				E14C9F562C2BFABB0063F570 /* CardView.swift */,
-				E14C9F582C2BFADE0063F570 /* Cardify.swift */,
-				E14C9F5A2C2BFBAD0063F570 /* View+Extensions.swift */,
-				E14C9F5C2C2BFD5D0063F570 /* Diamond.swift */,
-				E14C9F542C2BFA2B0063F570 /* AspectVGrid.swift */,
 				E129C1792C295817008BBBDD /* Assets.xcassets */,
 				E129C17B2C295817008BBBDD /* Preview Content */,
 			);
@@ -118,6 +112,13 @@
 			path = SetGameTests;
 			sourceTree = "<group>";
 		};
+		E14C9F602C2C07620063F570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +135,9 @@
 			dependencies = (
 			);
 			name = SetGame;
+			packageProductDependencies = (
+				E14C9F612C2C07620063F570 /* CoreComponent */,
+			);
 			productName = SetGame;
 			productReference = E129C1722C295816008BBBDD /* SetGame.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E129C17D2C295817008BBBDD /* Preview Assets.xcassets in Resources */,
+				E14C9F5F2C2C07030063F570 /* CoreComponent in Resources */,
 				E129C17A2C295817008BBBDD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,13 +224,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E129C1782C295816008BBBDD /* SetGameView.swift in Sources */,
-				E14C9F592C2BFADE0063F570 /* Cardify.swift in Sources */,
 				E14C9F512C295D740063F570 /* SetGame.swift in Sources */,
 				E129C1762C295816008BBBDD /* SetGameApp.swift in Sources */,
-				E14C9F552C2BFA2B0063F570 /* AspectVGrid.swift in Sources */,
 				E14C9F572C2BFABB0063F570 /* CardView.swift in Sources */,
-				E14C9F5D2C2BFD5D0063F570 /* Diamond.swift in Sources */,
-				E14C9F5B2C2BFBAD0063F570 /* View+Extensions.swift in Sources */,
 				E14C9F532C2BC4590063F570 /* SetGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +492,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E14C9F612C2C07620063F570 /* CoreComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreComponent;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E129C16A2C295816008BBBDD /* Project object */;
 }
