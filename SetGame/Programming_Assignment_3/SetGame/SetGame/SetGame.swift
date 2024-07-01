@@ -55,6 +55,9 @@ extension SetGame {
 
 extension SetGame {
     mutating func dealThreeMoreCards() {
+        if canMatchSet() {
+            calculateScore(isMatch: false)
+        }
         cards.append(contentsOf: drawCardsFromDeck())
     }
 }
