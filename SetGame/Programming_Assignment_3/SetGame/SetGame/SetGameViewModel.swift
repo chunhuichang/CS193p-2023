@@ -25,7 +25,7 @@ class SetGameViewModel: ObservableObject {
     }
     
     func selectCard(_ card: SetGame.Card) {
-        // TODO: model.selectCard(card)
+        model.selectCard(card)
         // TODO: check game is over?
     }
     

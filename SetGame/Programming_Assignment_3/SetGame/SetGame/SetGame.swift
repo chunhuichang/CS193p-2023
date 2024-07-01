@@ -16,8 +16,68 @@ struct SetGame {
     init() {
         deck = genAllCards()
         deck.shuffle()
-        cards = Array(deck.prefix(12))
-        deck.removeFirst(12)
+        cards = drawCardsFromDeck(12)
+    }
+}
+
+// MARK: - Select Card
+
+extension SetGame {
+    mutating func selectCard(_ card: Card) {
+        if let index = cards.firstIndex(where: { $0.id == card.id }) {
+            cards[index].isSelected.toggle()
+            let selectedCards = cards.filter(\.isSelected)
+            if selectedCards.count == 3 {
+                if isSet(selectedCards) {
+                    score += 3
+                    // TODO: Bonus socre
+                    var drawCards = drawCardsFromDeck()
+                    for selectedCard in selectedCards {
+                        if let selectedIndex = cards.firstIndex(where: { $0.id == selectedCard.id }) {
+                            if drawCards.isEmpty {
+                                cards.remove(at: selectedIndex)
+                            } else {
+                                cards[selectedIndex] = drawCards.removeFirst()
+                            }
+                        }
+                    }
+                } else {
+                    score = max(0, score - 1)
+
+                    let selectedCardIndexs = cards.enumerated().filter { $1.isSelected }.map(\.offset)
+                    for selectedIndex in selectedCardIndexs {
+                        cards[selectedIndex].isSelected = false
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Private function
+
+private extension SetGame {
+    mutating func drawCardsFromDeck(_ count: Int = 3) -> [Card] {
+        guard !deck.isEmpty else {
+            return []
+        }
+        let drawCards = Array(deck.prefix(count))
+        deck.removeFirst(count)
+        return drawCards
+    }
+
+    func isSet(_ cards: [Card]) -> Bool {
+        guard cards.count == 3 else {
+            return false
+        }
+        return isTypeSet(cards.map(\.color)) &&
+            isTypeSet(cards.map(\.shape)) &&
+            isTypeSet(cards.map(\.number)) &&
+            isTypeSet(cards.map(\.shading))
+    }
+
+    func isTypeSet(_ types: [some Hashable]) -> Bool {
+        Set(types).count != 2
     }
 }
 
