@@ -18,6 +18,10 @@ struct SetGame {
         deck.shuffle()
         cards = drawCardsFromDeck(12)
     }
+
+    // MARK: - Bonus Time
+
+    var lastMatchTime: Date?
 }
 
 // MARK: - Select Card
@@ -30,7 +34,13 @@ extension SetGame {
             if selectedCards.count == 3 {
                 if isSet(selectedCards) {
                     score += 3
-                    // TODO: Bonus socre
+                    
+                    // Calculate Bonus Score
+                    if let lastTime = lastMatchTime, Date().timeIntervalSince(lastTime) < 5 {
+                        score += 5
+                    }
+                    lastMatchTime = Date()
+                    
                     var drawCards = drawCardsFromDeck()
                     for selectedCard in selectedCards {
                         if let selectedIndex = cards.firstIndex(where: { $0.id == selectedCard.id }) {
@@ -141,7 +151,7 @@ private extension SetGame {
         for color in Card.CardColor.allCases {
             for shape in Card.CardShape.allCases {
                 for number in Card.CardNumber.allCases {
-                    for shading in Card.CardShading.allCases {
+                for shading in Card.CardShading.allCases {
                         allCards.append(Card(color: color, shape: shape, number: number, shading: shading))
                     }
                 }
