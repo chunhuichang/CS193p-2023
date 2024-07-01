@@ -26,7 +26,7 @@ class SetGameViewModel: ObservableObject {
     
     func selectCard(_ card: SetGame.Card) {
         model.selectCard(card)
-        // TODO: check game is over?
+        isGameOver = model.isGameOver
     }
     
     func dealThreeMoreCards() {

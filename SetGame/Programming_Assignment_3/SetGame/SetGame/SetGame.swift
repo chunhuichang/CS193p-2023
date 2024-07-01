@@ -12,6 +12,12 @@ struct SetGame {
     private(set) var cards: [Card] = []
     private(set) var deck: [Card] = []
     private(set) var score: Int = 0
+    var isGameOver: Bool {
+        guard deck.isEmpty else {
+            return false
+        }
+        return !canMatchSet()
+    }
 
     init() {
         deck = genAllCards()
@@ -63,6 +69,20 @@ private extension SetGame {
         let drawCards = Array(deck.prefix(count))
         deck.removeFirst(count)
         return drawCards
+    }
+
+    func canMatchSet() -> Bool {
+        for i in cards.indices {
+            for j in stride(from: i + 1, to: cards.count, by: 1) {
+                for k in stride(from: j + 1, to: cards.count, by: 1) {
+                    if isSet([cards[i], cards[j], cards[k]]) {
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
     }
 
     func isSet(_ cards: [Card]) -> Bool {
@@ -166,7 +186,7 @@ private extension SetGame {
         for color in Card.CardColor.allCases {
             for shape in Card.CardShape.allCases {
                 for number in Card.CardNumber.allCases {
-                for shading in Card.CardShading.allCases {
+                    for shading in Card.CardShading.allCases {
                         allCards.append(Card(color: color, shape: shape, number: number, shading: shading))
                     }
                 }
