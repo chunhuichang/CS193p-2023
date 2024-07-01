@@ -54,6 +54,14 @@ extension SetGame {
     }
 }
 
+// MARK: - Deal Three More Cards
+
+extension SetGame {
+    mutating func dealThreeMoreCards() {
+        cards.append(contentsOf: drawCardsFromDeck())
+    }
+}
+
 // MARK: - Private function
 
 private extension SetGame {

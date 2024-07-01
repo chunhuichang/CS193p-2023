@@ -30,7 +30,7 @@ class SetGameViewModel: ObservableObject {
     }
     
     func dealThreeMoreCards() {
-        // TODO: model.dealThreeMoreCards()
+        model.dealThreeMoreCards()
     }
     
     func newGame() {
