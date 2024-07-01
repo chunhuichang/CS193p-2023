@@ -32,32 +32,13 @@ extension SetGame {
             cards[index].isSelected.toggle()
             let selectedCards = cards.filter(\.isSelected)
             if selectedCards.count == 3 {
-                if isSet(selectedCards) {
-                    score += 3
-                    
-                    // Calculate Bonus Score
-                    if let lastTime = lastMatchTime, Date().timeIntervalSince(lastTime) < 5 {
-                        score += 5
-                    }
-                    lastMatchTime = Date()
-                    
-                    var drawCards = drawCardsFromDeck()
-                    for selectedCard in selectedCards {
-                        if let selectedIndex = cards.firstIndex(where: { $0.id == selectedCard.id }) {
-                            if drawCards.isEmpty {
-                                cards.remove(at: selectedIndex)
-                            } else {
-                                cards[selectedIndex] = drawCards.removeFirst()
-                            }
-                        }
-                    }
-                } else {
-                    score = max(0, score - 1)
+                let isMatchSet = isSet(selectedCards)
+                calculateScore(isMatch: isMatchSet)
 
-                    let selectedCardIndexs = cards.enumerated().filter { $1.isSelected }.map(\.offset)
-                    for selectedIndex in selectedCardIndexs {
-                        cards[selectedIndex].isSelected = false
-                    }
+                if isMatchSet {
+                    handleMatchSet(selectedCards)
+                } else {
+                    handleMismatchSet()
                 }
             }
         }
@@ -96,6 +77,40 @@ private extension SetGame {
 
     func isTypeSet(_ types: [some Hashable]) -> Bool {
         Set(types).count != 2
+    }
+
+    mutating func handleMatchSet(_ selectedCards: [SetGame.Card]) {
+        var drawCards = drawCardsFromDeck()
+        for selectedCard in selectedCards {
+            if let selectedIndex = cards.firstIndex(where: { $0.id == selectedCard.id }) {
+                if drawCards.isEmpty {
+                    cards.remove(at: selectedIndex)
+                } else {
+                    cards[selectedIndex] = drawCards.removeFirst()
+                }
+            }
+        }
+    }
+
+    mutating func handleMismatchSet() {
+        let selectedCardIndexs = cards.enumerated().filter { $1.isSelected }.map(\.offset)
+        for selectedIndex in selectedCardIndexs {
+            cards[selectedIndex].isSelected = false
+        }
+    }
+
+    mutating func calculateScore(isMatch: Bool) {
+        if isMatch {
+            score += 3
+
+            // Calculate Bonus Score
+            if let lastTime = lastMatchTime, Date().timeIntervalSince(lastTime) < 5 {
+                score += 5
+            }
+            lastMatchTime = Date()
+        } else {
+            score = max(0, score - 1)
+        }
     }
 }
 
