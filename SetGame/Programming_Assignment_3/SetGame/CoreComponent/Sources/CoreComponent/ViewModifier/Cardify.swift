@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Cardify: ViewModifier {
-    var isSelected: Bool
+    let isSelected: Bool
+    let isHint: Bool
 
     func body(content: Content) -> some View {
         ZStack {
@@ -16,6 +17,7 @@ struct Cardify: ViewModifier {
             base
                 .strokeBorder(lineWidth: Constants.lineWidth)
                 .stroke(isSelected ? Constants.selectedColor : Constants.unselectedColor, lineWidth: Constants.lineWidth)
+                .stroke(isHint ? Constants.hintColor : Constants.unselectedColor, lineWidth: Constants.lineWidth)
                 .background(base.fill(.white))
                 .overlay(content)
         }
@@ -26,5 +28,6 @@ struct Cardify: ViewModifier {
         static let lineWidth: CGFloat = 3
         static let selectedColor: Color = .purple
         static let unselectedColor: Color = .clear
+        static let hintColor: Color = .yellow
     }
 }

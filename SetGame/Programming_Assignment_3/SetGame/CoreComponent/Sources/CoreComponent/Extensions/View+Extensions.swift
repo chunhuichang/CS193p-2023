@@ -8,7 +8,7 @@
 import SwiftUI
 
 public extension View {
-    func cardify(isSelected: Bool) -> some View {
-        modifier(Cardify(isSelected: isSelected))
+    func cardify(isSelected: Bool, isHint: Bool) -> some View {
+        modifier(Cardify(isSelected: isSelected, isHint: isHint))
     }
 }

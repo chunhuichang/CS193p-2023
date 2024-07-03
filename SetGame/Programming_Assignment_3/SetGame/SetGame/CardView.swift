@@ -10,13 +10,14 @@ import SwiftUI
 
 struct CardView: View {
     let card: SetGame.Card
+    let isHint: Bool
 
     var body: some View {
         GeometryReader { geometry in
             let symbolSize = symbolSize(in: geometry)
             ZStack {
                 cardContents(size: symbolSize)
-                    .cardify(isSelected: card.isSelected)
+                    .cardify(isSelected: card.isSelected, isHint: isHint)
             }
         }
     }

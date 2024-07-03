@@ -36,4 +36,8 @@ class SetGameViewModel: ObservableObject {
     func newGame() {
         model = SetGame()
     }
+
+    func hint() -> Set<SetGame.Card> {
+        model.getHintCards()
+    }
 }

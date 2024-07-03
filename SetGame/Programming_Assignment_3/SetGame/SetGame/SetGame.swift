@@ -62,6 +62,18 @@ extension SetGame {
     }
 }
 
+// MARK: - Get Hint
+
+extension SetGame {
+    mutating func getHintCards() -> Set<SetGame.Card> {
+        let set = findMatchSet()
+        if !set.isEmpty {
+            calculateScore(isMatch: false)
+        }
+        return Set(set)
+    }
+}
+
 // MARK: - Private function
 
 private extension SetGame {
@@ -75,17 +87,19 @@ private extension SetGame {
     }
 
     func canMatchSet() -> Bool {
+        !findMatchSet().isEmpty
+    }
+
+    func findMatchSet() -> [Card] {
         for i in cards.indices {
             for j in stride(from: i + 1, to: cards.count, by: 1) {
-                for k in stride(from: j + 1, to: cards.count, by: 1) {
-                    if isSet([cards[i], cards[j], cards[k]]) {
-                        return true
-                    }
+                for k in stride(from: j + 1, to: cards.count, by: 1) where isSet([cards[i], cards[j], cards[k]]) {
+                    return [cards[i], cards[j], cards[k]]
                 }
             }
         }
 
-        return false
+        return []
     }
 
     func isSet(_ cards: [Card]) -> Bool {
@@ -138,7 +152,7 @@ private extension SetGame {
 }
 
 extension SetGame {
-    struct Card: Identifiable {
+    struct Card: Identifiable, Hashable {
         let id = UUID()
         let color: CardColor
         let shape: CardShape
