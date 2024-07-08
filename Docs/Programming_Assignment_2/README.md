@@ -1,5 +1,7 @@
 # Programming Assignment 2
 
+### [Code](../../Memorize/Memorize/Programming%20Assignment%202)
+
 ### Required Tasks
 1. Add a `New Game` button to your UI which begins a
 brand new game.
