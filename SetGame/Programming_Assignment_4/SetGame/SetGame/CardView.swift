@@ -9,8 +9,14 @@ import CoreComponent
 import SwiftUI
 
 struct CardView: View {
-    let card: SetGame.Card
+    typealias Card = SetGame.Card
+    let card: Card
     let isHint: Bool
+
+    init(_ card: Card, isHint: Bool) {
+        self.card = card
+        self.isHint = isHint
+    }
 
     var body: some View {
         GeometryReader { geometry in

@@ -9,12 +9,13 @@ import CoreComponent
 import SwiftUI
 
 struct SetGameView: View {
+    typealias Card = SetGame.Card
     @ObservedObject
     var viewModel: SetGameViewModel
     @State
     private var isGameOver = true
     @State
-    private var hint: Set<SetGame.Card> = []
+    private var hint: Set<Card> = []
 
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct SetGameView: View {
 private extension SetGameView {
     private var cards: some View {
         AspectVGrid(viewModel.cards, Constants.aspectRatio) { card in
-            CardView(card: card, isHint: hint.contains(card))
+            CardView(card, isHint: hint.contains(card))
                 .padding(Constants.spacing)
                 .onTapGesture {
                     viewModel.selectCard(card)

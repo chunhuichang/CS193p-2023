@@ -8,11 +8,12 @@
 import Foundation
 
 class SetGameViewModel: ObservableObject {
+    typealias Card = SetGame.Card
     @Published
     private var model = SetGame()
     var isGameOver = false
     
-    var cards: [SetGame.Card] {
+    var cards: [Card] {
         model.cards
     }
     
