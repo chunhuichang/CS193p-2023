@@ -11,6 +11,7 @@ import SwiftUICore
 struct SetGame {
     private(set) var cards: [Card] = []
     private(set) var deck: [Card] = []
+    private(set) var discardPile: [Card] = []
     private(set) var score: Int = 0
     var isGameOver: Bool {
         guard deck.isEmpty else {
@@ -21,7 +22,7 @@ struct SetGame {
 
     init() {
         deck = genAllCards()
-        deck.shuffle()
+        shuffleDeckCard()
         cards = drawCardsFromDeck(12)
     }
 
@@ -66,11 +67,20 @@ extension SetGame {
 
 extension SetGame {
     mutating func getHintCards() -> Set<SetGame.Card> {
+        print("cards:\(cards.count),deck:\(deck.count),discardPile:\(discardPile.count)")
         let set = findMatchSet()
         if !set.isEmpty {
             calculateScore(isMatch: false)
         }
         return Set(set)
+    }
+}
+
+// MARK: - Suffle Deck Cards
+
+extension SetGame {
+    mutating func shuffleDeckCard() {
+        deck.shuffle()
     }
 }
 
@@ -120,6 +130,7 @@ private extension SetGame {
         var drawCards = drawCardsFromDeck()
         for selectedCard in selectedCards {
             if let selectedIndex = cards.firstIndex(where: { $0.id == selectedCard.id }) {
+                discardPile.append(cards[selectedIndex])
                 if drawCards.isEmpty {
                     cards.remove(at: selectedIndex)
                 } else {

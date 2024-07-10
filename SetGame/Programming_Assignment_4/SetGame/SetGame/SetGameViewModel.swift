@@ -40,4 +40,8 @@ class SetGameViewModel: ObservableObject {
     func hint() -> Set<SetGame.Card> {
         model.getHintCards()
     }
+
+    func shuffleDeckCard() {
+        model.shuffleDeckCard()
+    }
 }

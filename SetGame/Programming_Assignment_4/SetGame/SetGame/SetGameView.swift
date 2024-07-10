@@ -18,10 +18,9 @@ struct SetGameView: View {
 
     var body: some View {
         VStack {
-            Text("Score: \(viewModel.score)")
-                .font(.headline)
+            top.padding(.vertical)
             cards
-            buttons.padding(.vertical)
+            bottom.padding(.vertical)
         }
         .padding()
         .alert(isPresented: $viewModel.isGameOver) {
@@ -55,26 +54,60 @@ private extension SetGameView {
     }
 }
 
-// MARK: - Buttons
+// MARK: - Top
 
 private extension SetGameView {
-    var buttons: some View {
-        HStack {
-            Button("New Game") {
+    var top: some View {
+        HStack(spacing: 8) {
+            Button {
                 viewModel.newGame()
+            } label: {
+                Text("New Game")
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(BorderedButtonStyle())
             Spacer()
-            Button("Hint") {
+            Text("Score: \(viewModel.score)")
+                .font(.headline)
+            Spacer()
+            Button {
                 hint = viewModel.hint()
+            } label: {
+                Text("Hint")
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(BorderedButtonStyle())
-            Spacer()
-            Button("Deal 3 More Cards") {
+        }
+    }
+}
+
+// MARK: - Bottom
+
+private extension SetGameView {
+    var bottom: some View {
+        HStack(spacing: 8) {
+            Button {
                 viewModel.dealThreeMoreCards()
+            } label: {
+                Text("Deck")
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(BorderedProminentButtonStyle())
             .disabled(viewModel.deckIsEmpty)
+            Spacer()
+            Button {
+                viewModel.shuffleDeckCard()
+            } label: {
+                Text("Shuffle")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(BorderedButtonStyle())
+            Spacer()
+            Button {} label: {
+                Text("Discard pile")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(BorderedButtonStyle())
         }
     }
 }
