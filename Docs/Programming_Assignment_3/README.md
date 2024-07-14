@@ -1,5 +1,7 @@
 # Programming Assignment 3
 
+### [Code](../../SetGame/Programming_Assignment_3)
+
 ### Required Tasks
 1. Implement a game of solo (i.e. one player) Set.
 2. Users must be able to select up to 3 cards by touching on them in an attempt to make
