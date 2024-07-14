@@ -23,7 +23,6 @@ struct SetGame {
     init() {
         deck = genAllCards()
         shuffleDeckCard()
-        cards = drawCardsFromDeck(12)
     }
 
     // MARK: - Bonus Time
@@ -52,14 +51,18 @@ extension SetGame {
     }
 }
 
-// MARK: - Deal Three More Cards
+// MARK: - Deal More Cards
 
 extension SetGame {
+    mutating func dealInitCards() {
+        drawCardsFromDeck(12).forEach { cards.append($0) }
+    }
+
     mutating func dealThreeMoreCards() {
         if canMatchSet() {
             calculateScore(isMatch: false)
         }
-        cards.append(contentsOf: drawCardsFromDeck())
+        drawCardsFromDeck().forEach { cards.append($0) }
     }
 }
 
@@ -67,7 +70,6 @@ extension SetGame {
 
 extension SetGame {
     mutating func getHintCards() -> Set<SetGame.Card> {
-        print("cards:\(cards.count),deck:\(deck.count),discardPile:\(discardPile.count)")
         let set = findMatchSet()
         if !set.isEmpty {
             calculateScore(isMatch: false)
@@ -81,6 +83,14 @@ extension SetGame {
 extension SetGame {
     mutating func shuffleDeckCard() {
         deck.shuffle()
+    }
+
+    mutating func reshuffle() {
+        let cardCount = cards.count
+        deck.append(contentsOf: cards)
+        cards.removeAll()
+        shuffleDeckCard()
+        drawCardsFromDeck(cardCount).forEach { cards.append($0) }
     }
 }
 
@@ -127,15 +137,12 @@ private extension SetGame {
     }
 
     mutating func handleMatchSet(_ selectedCards: [SetGame.Card]) {
-        var drawCards = drawCardsFromDeck()
         for selectedCard in selectedCards {
             if let selectedIndex = cards.firstIndex(where: { $0.id == selectedCard.id }) {
-                discardPile.append(cards[selectedIndex])
-                if drawCards.isEmpty {
-                    cards.remove(at: selectedIndex)
-                } else {
-                    cards[selectedIndex] = drawCards.removeFirst()
-                }
+                var discardCard = cards[selectedIndex]
+                discardCard.isSelected.toggle()
+                discardPile.append(discardCard)
+                cards.remove(at: selectedIndex)
             }
         }
     }

@@ -16,6 +16,8 @@ struct SetGameView: View {
     private var isGameOver = true
     @State
     private var hint: Set<Card> = []
+    @Namespace
+    private var dealingNamespace
 
     var body: some View {
         VStack {
@@ -40,18 +42,26 @@ struct SetGameView: View {
 
 private extension SetGameView {
     private var cards: some View {
-        AspectVGrid(viewModel.cards, Constants.aspectRatio) { card in
-            CardView(card, isHint: hint.contains(card))
+        AspectVGrid(viewModel.tableCards, Constants.aspectRatio) { card in
+            cardAinimationView(card)
                 .padding(Constants.spacing)
                 .onTapGesture {
-                    viewModel.selectCard(card)
+                    withAnimation {
+                        viewModel.selectCard(card)
+                    }
                 }
         }
     }
+}
 
+// MARK: - Constants
+
+private extension SetGameView {
     private struct Constants {
         static let aspectRatio: CGFloat = 2 / 3
+        static let cornerRadius: CGFloat = 12
         static let spacing: CGFloat = 4
+        static let deckWidth: CGFloat = 50
     }
 }
 
@@ -61,7 +71,9 @@ private extension SetGameView {
     var top: some View {
         HStack(spacing: 8) {
             Button {
-                viewModel.newGame()
+                withAnimation {
+                    viewModel.newGame()
+                }
             } label: {
                 Text("New Game")
                     .frame(maxWidth: .infinity)
@@ -87,29 +99,67 @@ private extension SetGameView {
 private extension SetGameView {
     var bottom: some View {
         HStack(spacing: 8) {
-            Button {
-                viewModel.dealThreeMoreCards()
-            } label: {
-                Text("Deck")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(BorderedProminentButtonStyle())
-            .disabled(viewModel.deckIsEmpty)
+            deck
             Spacer()
-            Button {
-                viewModel.shuffleDeckCard()
-            } label: {
-                Text("Shuffle")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(BorderedButtonStyle())
+            shuffleButton
             Spacer()
-            Button {} label: {
-                Text("Discard pile")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(BorderedButtonStyle())
+            discardPile
         }
+    }
+}
+
+// MARK: - Shuffle button
+
+private extension SetGameView {
+    var shuffleButton: some View {
+        Button {
+            withAnimation {
+                viewModel.shuffleDeckCard()
+            }
+        } label: {
+            Text("Shuffle")
+        }
+        .buttonStyle(BorderedButtonStyle())
+    }
+}
+
+// MARK: - Dealing to Discard pile
+
+private extension SetGameView {
+    var discardPile: some View {
+        ZStack {
+            ForEach(viewModel.discardCards) { card in
+                cardAinimationView(card, needHint: false)
+            }
+        }
+        .frame(width: Constants.deckWidth, height: Constants.deckWidth / Constants.aspectRatio)
+    }
+}
+
+// MARK: - Dealing from a Deck
+
+private extension SetGameView {
+    var deck: some View {
+        ZStack {
+            ForEach(viewModel.deckCards) { card in
+                RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                    .fill(viewModel.deckCardColor)
+                    .matchedGeometryEffect(id: card.id, in: dealingNamespace)
+                    .transition(AsymmetricTransition(insertion: .identity, removal: .identity))
+            }
+        }
+        .frame(width: Constants.deckWidth, height: Constants.deckWidth / Constants.aspectRatio)
+        .onTapGesture {
+            withAnimation {
+                viewModel.dealMoreCards()
+            }
+        }
+    }
+
+    func cardAinimationView(_ card: Card, needHint: Bool = true) -> some View {
+        CardView(card, isHint: needHint ? hint.contains(card) : false)
+            .matchedGeometryEffect(id: card.id, in: dealingNamespace)
+            .transition(AsymmetricTransition(insertion: .identity, removal: .identity))
     }
 }
 

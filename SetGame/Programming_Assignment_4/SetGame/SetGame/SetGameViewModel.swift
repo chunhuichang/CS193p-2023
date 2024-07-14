@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUICore
 
 class SetGameViewModel: ObservableObject {
     typealias Card = SetGame.Card
@@ -13,36 +14,48 @@ class SetGameViewModel: ObservableObject {
     private var model = SetGame()
     var isGameOver = false
     
-    var cards: [Card] {
+    var tableCards: [Card] {
         model.cards
+    }
+    
+    var deckCards: [Card] {
+        model.deck
+    }
+    
+    var discardCards: [Card] {
+        model.discardPile
     }
     
     var score: Int {
         model.score
     }
     
-    var deckIsEmpty: Bool {
-        model.deck.isEmpty
+    var deckCardColor: Color {
+        .orange
     }
     
-    func selectCard(_ card: SetGame.Card) {
+    func selectCard(_ card: Card) {
         model.selectCard(card)
         isGameOver = model.isGameOver
     }
     
-    func dealThreeMoreCards() {
-        model.dealThreeMoreCards()
+    func dealMoreCards() {
+        if tableCards.isEmpty {
+            model.dealInitCards()
+        } else {
+            model.dealThreeMoreCards()
+        }
     }
     
     func newGame() {
         model = SetGame()
     }
-
+    
     func hint() -> Set<SetGame.Card> {
         model.getHintCards()
     }
 
     func shuffleDeckCard() {
-        model.shuffleDeckCard()
+        model.reshuffle()
     }
 }
