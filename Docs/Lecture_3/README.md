@@ -4,14 +4,77 @@ Conceptual overview of the architectural paradigm underlying the development of 
 
 [Video](https://www.youtube.com/watch?v=W1ymVx6dmvc)
 
+
+## Note
 ### MVVM - Design paradigm
+- Separating `Logic and Data` from `UI`
+    - Model
+        - Logic and Data
+        - A struct or an SQL database or any combination of such things
+    - View
+        - UI
+        - Visual manifestation of the Model
+
+- Connecting the `Model` to the `UI`
+    - View Model
+        - The Model might only be accessible via a `gatekeeper` class
+
+- SwiftUI 
+    - Takes care of making sure the UI gets `rebuilt` when a Model `change` affects the UI
+    - Primary architecture for complex application
+
 - Model
-    - Separating `Logic and Data` from `UI`
-    - The Truth
-- View Model
-    - Connecting the `Model` to the `UI`, called gatekeeper
+    - UI independent, include data and logic
+    - The Truth, if you want the information you go back the Model
+
 - View
-    - UI
+    - Reflects the Model
+        - Whatever's happening in the Model, you should see that on screen
+    - Stateless
+        - It's just always showing what's in the Model
+        - @State in our View is not good, it's rare
+    - Declared
+        - Built using SwiftUI's declarative syntax
+    - Reactive
+        - Updates automatically when the Model changes
+
+- ViewModel
+    - Binds View to Model
+    - Roles
+        - Interpreter
+            - Interprets data for the View
+        - Gatekeeper
+            - Control the flow between Model and View
+        - Processes Intent
+            - Receiving user actions from the View
+            - Modifying the Model to reflect those actions
+
+- Data Flow
+    - Model to View
+        - The data flows through the ViewModel to the View
+        - Things happen in the Model and it's this ViewModel's job to notice those changes
+        - The ViewModel then publishes to the whole world "something changed in the Model"
+        - SwiftUI automatically rebuilds the affected parts of the UI
+        - notice change -> publish that changes happen -> Swift automatically figures out and redraw them
+    - View to Model
+        - Calls intent function
+            - When someone taps on something in the View they call a function in the ViewModel saying "the user has the following intent"
+        - Modifies the Model
+            - The ViewModel modifies the Model in whatever way to express whatever the user's intention isintent
+        - calls intent function -> modifies the Model
+            
+- Keyword
+    - ViewModel
+        - ObservableObject
+        - @Published
+        - objectWillChange.send()
+    - View
+        - @ObservedObject
+        - @Binding
+        - .onReceive
+        - @EnvironmentObject
+        - .environmentObject()
+
 
 ![<MVVM>](MVVM.png)
 
